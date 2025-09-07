@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const demoPrices = [2100, 2200, 2150, 2250, 2300, 2280, 2350, 2400, 2380, 2450, 2500];
+const demoPrices = [
+  2100, 2200, 2150, 2250, 2300, 2280, 2350, 2400, 2380, 2450, 2500,
+];
 
 function getRandomForecast() {
   const base = demoPrices[demoPrices.length - 1];
@@ -37,9 +39,13 @@ const PricePredictionEngine = () => {
 
   return (
     <div className="w-full max-w-lg mx-auto bg-white rounded-xl shadow p-4 border flex flex-col">
-      <div className="font-bold text-green-700 mb-2 flex items-center gap-2"><TrendingUp className="h-4 w-4" /> Price Prediction Engine</div>
+      <div className="font-bold text-green-700 mb-2 flex items-center gap-2">
+        <TrendingUp className="h-4 w-4" /> Price Prediction Engine
+      </div>
       <div className="flex items-center gap-3 mb-4">
-        <div className="text-2xl font-bold text-green-700">₹{basePrice}/quintal</div>
+        <div className="text-2xl font-bold text-green-700">
+          ₹{basePrice}/quintal
+        </div>
         <span className="text-xs text-gray-500">Current Market Price</span>
       </div>
       <button
@@ -47,7 +53,7 @@ const PricePredictionEngine = () => {
         onClick={handlePredict}
         disabled={loading}
       >
-        {loading ? 'Predicting...' : 'Get 7-Day Forecast'}
+        {loading ? "Predicting..." : "Get 7-Day Forecast"}
       </button>
       {forecast.length > 0 && (
         <div className="mt-2">
@@ -66,15 +72,27 @@ const PricePredictionEngine = () => {
               {forecast.map((f, i) => (
                 <tr key={i} className="border-b last:border-0">
                   <td className="py-1 px-2 font-medium">{f.day}</td>
-                  <td className={`py-1 px-2 font-semibold ${getTrendColor(f.price, basePrice)}`}>{f.price}</td>
-                  <td className="py-1 px-2 text-gray-700">{f.confLow} - {f.confHigh}</td>
+                  <td
+                    className={`py-1 px-2 font-semibold ${getTrendColor(
+                      f.price,
+                      basePrice
+                    )}`}
+                  >
+                    {f.price}
+                  </td>
+                  <td className="py-1 px-2 text-gray-700">
+                    {f.confLow} - {f.confHigh}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
           <div className="mt-3 text-center">
             <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
-              Recommendation: {forecast[3].price > basePrice ? 'Hold for higher price' : 'Consider selling soon'}
+              Recommendation:{" "}
+              {forecast[3].price > basePrice
+                ? "Hold for higher price"
+                : "Consider selling soon"}
             </span>
           </div>
         </div>

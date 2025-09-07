@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { BarChart3, TrendingUp, Brain, AlertTriangle } from 'lucide-react';
+import React, { useState } from "react";
+import { BarChart3, TrendingUp, Brain, AlertTriangle } from "lucide-react";
 
 const demandData = [
-  { crop: 'Wheat', current: 8500, predicted: 9200, change: '+8%' },
-  { crop: 'Rice', current: 7200, predicted: 6800, change: '-5%' },
-  { crop: 'Tomatoes', current: 3400, predicted: 4100, change: '+20%' },
-  { crop: 'Pulses', current: 2100, predicted: 2350, change: '+12%' },
+  { crop: "Wheat", current: 8500, predicted: 9200, change: "+8%" },
+  { crop: "Rice", current: 7200, predicted: 6800, change: "-5%" },
+  { crop: "Tomatoes", current: 3400, predicted: 4100, change: "+20%" },
+  { crop: "Pulses", current: 2100, predicted: 2350, change: "+12%" },
 ];
 
 const AIDemandForecasting = () => {
@@ -30,17 +30,25 @@ const AIDemandForecasting = () => {
         onClick={handleForecast}
         disabled={loading}
       >
-        {loading ? 'Analyzing...' : 'Generate 30-Day Forecast'}
+        {loading ? "Analyzing..." : "Generate 30-Day Forecast"}
       </button>
-      
+
       {showForecast && (
         <div className="space-y-3">
-          <div className="text-sm font-medium text-gray-700 mb-2">Predicted Demand vs Current</div>
+          <div className="text-sm font-medium text-gray-700 mb-2">
+            Predicted Demand vs Current
+          </div>
           {demandData.map((item) => (
             <div key={item.crop} className="bg-blue-50 rounded p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="font-medium">{item.crop}</span>
-                <span className={`text-sm font-semibold ${item.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                <span
+                  className={`text-sm font-semibold ${
+                    item.change.startsWith("+")
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
                   {item.change}
                 </span>
               </div>

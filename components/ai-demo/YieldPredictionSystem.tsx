@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const demoYields = {
   wheat: 32,
@@ -9,15 +9,17 @@ const demoYields = {
 
 const YieldPredictionSystem = () => {
   const [inputs, setInputs] = useState({
-    crop: 'wheat',
+    crop: "wheat",
     area: 1,
-    sowingDate: '',
-    location: '',
+    sowingDate: "",
+    location: "",
   });
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
@@ -26,7 +28,11 @@ const YieldPredictionSystem = () => {
     setLoading(true);
     setTimeout(() => {
       const base = demoYields[inputs.crop as keyof typeof demoYields] || 20;
-      const yieldVal = (base * Number(inputs.area) * (0.9 + Math.random() * 0.2)).toFixed(2);
+      const yieldVal = (
+        base *
+        Number(inputs.area) *
+        (0.9 + Math.random() * 0.2)
+      ).toFixed(2);
       setResult({ yield: yieldVal });
       setLoading(false);
     }, 1000);
@@ -47,22 +53,45 @@ const YieldPredictionSystem = () => {
         </div>
         <div>
           <label>Area (acres): </label>
-          <input type="number" name="area" value={inputs.area} onChange={handleChange} min={0.1} step={0.1} />
+          <input
+            type="number"
+            name="area"
+            value={inputs.area}
+            onChange={handleChange}
+            min={0.1}
+            step={0.1}
+          />
         </div>
         <div>
           <label>Sowing Date: </label>
-          <input type="date" name="sowingDate" value={inputs.sowingDate} onChange={handleChange} />
+          <input
+            type="date"
+            name="sowingDate"
+            value={inputs.sowingDate}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Location: </label>
-          <input type="text" name="location" value={inputs.location} onChange={handleChange} />
+          <input
+            type="text"
+            name="location"
+            value={inputs.location}
+            onChange={handleChange}
+          />
         </div>
-        <button className="bg-blue-600 text-white px-3 py-1 rounded" type="submit" disabled={loading}>
-          {loading ? 'Predicting...' : 'Predict Yield'}
+        <button
+          className="bg-blue-600 text-white px-3 py-1 rounded"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Predicting..." : "Predict Yield"}
         </button>
       </form>
       {result && (
-        <div className="mt-2">Predicted Yield: <b>{result.yield} quintals</b></div>
+        <div className="mt-2">
+          Predicted Yield: <b>{result.yield} quintals</b>
+        </div>
       )}
     </div>
   );
